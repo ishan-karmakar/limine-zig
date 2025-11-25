@@ -281,7 +281,7 @@ pub const PagingModeRequest = extern struct {
 
 pub const GotoAddress = *const fn (*SmpInfo) callconv(.c) noreturn;
 
-const SmpFlags = switch (arch) {
+pub const SmpFlags = switch (arch) {
     .x86_64 => packed struct(u32) {
         x2apic: bool = false,
         reserved: u31 = 0,
@@ -291,7 +291,7 @@ const SmpFlags = switch (arch) {
     },
 };
 
-const SmpInfo = switch (arch) {
+pub const SmpInfo = switch (arch) {
     .x86_64 => extern struct {
         processor_id: u32,
         lapic_id: u32,
@@ -318,7 +318,7 @@ const SmpInfo = switch (arch) {
     },
 };
 
-const SmpResponse = switch (arch) {
+pub const SmpResponse = switch (arch) {
     .x86_64 => extern struct {
         revision: u64,
         flags: SmpFlags,
@@ -386,7 +386,7 @@ const SmpResponse = switch (arch) {
     },
 };
 
-const SmpRequest = extern struct {
+pub const SmpRequest = extern struct {
     id: [4]u64 = id(0x95a67b819a1b857e, 0xa0b61b723b6a73e0),
     revision: u64 = 0,
     response: ?*SmpResponse = null,
