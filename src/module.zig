@@ -3,6 +3,7 @@ const root = @import("root.zig");
 pub const Request = extern struct {
     id: [4]u64 = root.id(0x3e7e279702be32af, 0xca1c4f3bd1280cee),
     revision: u64 = 1,
+    response: ?*Response = null,
     // Request revision 1
     internal_module_count: u64 = 0,
     internal_modules: ?[*]const *const InternalModule = null,
