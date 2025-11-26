@@ -1,4 +1,4 @@
-const root = @import("root");
+const root = @import("root.zig");
 const arch = @import("builtin").cpu.arch;
 
 pub const Request = extern struct {

@@ -1,4 +1,4 @@
-const root = @import("root");
+const root = @import("root.zig");
 
 pub const Type = enum(u64) {
     x86_bios = 0,
