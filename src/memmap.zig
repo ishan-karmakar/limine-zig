@@ -10,6 +10,10 @@ pub const Response = extern struct {
     revision: u64,
     entry_count: u64,
     entries: [*]*Entry,
+
+    pub inline fn get_entries(self: @This()) []*Entry {
+        return self.entries[0..self.entry_count];
+    }
 };
 
 pub const Entry = extern struct {

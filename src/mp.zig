@@ -15,6 +15,10 @@ pub const Response = switch (arch) {
         bsp_lapic_id: u32,
         cpu_count: u64,
         cpus: [*]*Info,
+
+        pub inline fn get_cpus(self: @This()) []*Info {
+            return self.cpus[0..self.cpu_count];
+        }
     },
     .aarch64 => extern struct {
         revision: u64,
@@ -22,6 +26,10 @@ pub const Response = switch (arch) {
         bsp_mpidr: u64,
         cpu_count: u64,
         cpus: [*]*Info,
+
+        pub inline fn get_cpus(self: @This()) []*Info {
+            return self.cpus[0..self.cpu_count];
+        }
     },
     .riscv64 => extern struct {
         revision: u64,
@@ -29,6 +37,10 @@ pub const Response = switch (arch) {
         bsp_hartid: u64,
         cpu_count: u64,
         cpus: [*]*Info,
+
+        pub inline fn get_cpus(self: @This()) []*Info {
+            return self.cpus[0..self.cpu_count];
+        }
     },
     else => @compileError("Unsupported architecture"),
 };

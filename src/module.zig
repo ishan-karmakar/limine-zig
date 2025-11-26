@@ -7,12 +7,24 @@ pub const Request = extern struct {
     // Request revision 1
     internal_module_count: u64 = 0,
     internal_modules: ?[*]const *const InternalModule = null,
+
+    pub fn init(revision: u64, internal_modules: []*const InternalModule) @This() {
+        return .{
+            .revision = revision,
+            .internal_module_count = internal_modules.len,
+            .internal_modules = internal_modules.ptr,
+        };
+    }
 };
 
 pub const Response = extern struct {
     revision: u64,
     module_count: u64,
     modules: [*]*root.File,
+
+    pub inline fn get_modules(self: @This()) []*root.File {
+        return self.modules[0..self.module_count];
+    }
 };
 
 pub const InternalModule = extern struct {

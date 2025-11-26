@@ -8,8 +8,12 @@ pub const Request = extern struct {
 
 pub const Response = extern struct {
     revision: u64,
-    fb_count: u64,
+    framebuffer_count: u64,
     framebuffers: [*]*Framebuffer,
+
+    pub inline fn get_framebuffers(self: @This()) []*Framebuffer {
+        return self.framebuffers[0..self.framebuffer_count];
+    }
 };
 
 pub const Framebuffer = extern struct {
@@ -32,6 +36,10 @@ pub const Framebuffer = extern struct {
     // Response revision 1
     mode_count: u64,
     modes: [*]*VideoMode,
+
+    pub inline fn get_modes(self: @This()) []*VideoMode {
+        return self.modes[0..self.mode_count];
+    }
 };
 
 pub const MemoryModel = enum(u8) {
