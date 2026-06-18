@@ -2,6 +2,9 @@
 
 Zig bindings for the [The Limine Boot Protocol](https://github.com/limine-bootloader/limine/blob/trunk/PROTOCOL.md).
 
+# DEPRECATED
+This project is deprecated in favor of using TranslateC with the official [limine.h](https://github.com/Limine-Bootloader/limine-protocol/blob/trunk/include/limine.h) file.
+
 To use this library, add it to your `build.zig.zon` file manually or use `zig fetch`:
 
 ```sh
